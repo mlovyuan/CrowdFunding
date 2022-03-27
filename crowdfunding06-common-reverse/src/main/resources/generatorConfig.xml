@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- mybatis-generator:generate -->
+    <context id="atguiguTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!--  是否去除自動生成的註釋 true:是;false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--數據庫連接的信息：驅動類、連接地址、用戶名、密碼 -->
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/project_crowd?serverTimezone=UTC"
+                userId="root"
+                password="admin">
+        </jdbcConnection>
+        <!--  默認 false，把 JDBC DECIMAL  和 NUMERIC  類型解析為 Integer，為 true 時把
+        JDBC DECIMAL 和 NUMERIC  類型解析為 java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- targetProject:生成 Entity 類的路徑 -->
+        <javaModelGenerator targetProject=".\src\main\java"
+                            targetPackage="com.atguigu.crowd.entity">
+            <!-- enableSubPackages:是否讓 schema 作為包的後綴 -->
+            <property name="enableSubPackages" value="false"/>
+            <!--  從數據庫返回的值被清理前後的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:XxxMapper.xml 映射文件生成的路徑 -->
+        <sqlMapGenerator targetProject=".\src\main\java"
+                         targetPackage="com.atguigu.crowd.mapper">
+            <!-- enableSubPackages:是否讓 schema 作為包的後綴 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：Mapper 接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetProject=".\src\main\java"
+                             targetPackage="com.atguigu.crowd.mapper">
+            <!-- enableSubPackages:是否讓 schema 作為包的後綴 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--  數據庫表名字和我們的 entity 類對應的映射指定 -->
+        <table tableName="t_admin" domainObjectName="Admin"/>
+    </context>
+</generatorConfiguration>
